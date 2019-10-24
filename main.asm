@@ -20,13 +20,20 @@ welcomeLen = .- welcomeMsg
 .globl _start
 
 _start:
-mov r0, #STD
-ldr r1, =welcomeMsg
-ldr r2, =welcomeLen
-mov r7, #WRITE
-swi 0
+bl DisplayWelcomeMessage
+bl Exit
 
-mov r0, #0
-mov r7, #1
-swi 0
+
+DisplayWelcomeMessage:
+	mov r0, #STD
+	ldr r1, =welcomeMsg
+	ldr r2, =welcomeLen
+	mov r7, #WRITE
+	swi 0
+bx lr
+
+Exit:
+	mov r0, #0
+	mov r7, #1
+	swi 0
 	
