@@ -6,6 +6,8 @@
 .equ READ,	3
 .equ WRITE,	4
 .equ BUFFERSIZE,2
+.equ UP_CHAR,	119
+.equ DWN_CHAR,	115
 
 /* Initialised data */
 .section .data
@@ -49,7 +51,7 @@ GetInput:
 	mov r2, #BUFFERSIZE
 	mov r7, #READ
 	swi 0
-	ldr r0, [r1]
+	ldrb r0, [r1]
 bx lr
 
 Exit:
