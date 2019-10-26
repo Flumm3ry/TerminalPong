@@ -33,8 +33,11 @@ inputPromtLen = .- inputPromt
 
 _start:
 
-mov r4,#1
-mov r5,#3
+mov r4,#1	//player starting position
+
+mov r5,#1	//ball starting x
+lsl r5,#8
+orr r5,#3	//ball starting y
 
 push {r7}
 bl DisplayWelcomeMessage
@@ -66,21 +69,23 @@ b GameLoop
 
 bl Exit
 
+UpdateBall:
+
 UpdatePlayer:
 	mov r3,r0	//player position
 	mov r4,r1	//user input
 	
 	cmp r4,#1
-	beq moveUp
-	bhi moveDown
+	beq movePlayerUp
+	bhi movePlayerDown
 	blo exitUpdatePlayer	
 
-	moveUp:
+	movePlayerUp:
 		cmp r3,#0
 		subne r3,#1
 	b exitUpdatePlayer
 
-	moveDown:
+	movePlayerDown:
 		cmp r3,#3
 		addne r3,#1
 
@@ -91,11 +96,10 @@ bx lr
 
 DrawScreen:
 	mov r4,r0	//player y	
-	//ldrb r5,[r1]	//ball x
-	mov r5,#2
-	//lsl r1,#8
-	//ldrb r6,[r1]	//ball y
-		mov r6,#0
+	and r5,r1,#255	//ball x
+	lsr r1,#8
+	and r6,r1,#255	//ball y
+	check:
 
 	mov r8,#0		//current row
 	mov r9,#0		//current position in screen buffer
