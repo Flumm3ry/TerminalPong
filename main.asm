@@ -40,6 +40,7 @@ push {r7}
 bl DisplayWelcomeMessage
 pop {r7}
 
+GameLoop:
 mov r0,r4
 mov r1,r5
 push {r4-r11}
@@ -58,11 +59,7 @@ bl UpdatePlayer
 pop {r3,r4}
 mov r4,r0
 
-mov r0,r4
-mov r1,r3
-push {r4-r11}
-bl DrawScreen
-pop {r4-r11}
+b GameLoop
 
 
 //bl UpdateBall
@@ -123,13 +120,13 @@ DrawScreen:
 				strb r10,[r11,r9]
 				add r9,#1	
 				add r7,#1
-				cmp r7,#4
+				cmp r7,#6
 			bne innerloop
 		mov r10,#NEW_LINE
 		strb r10,[r11,r9]
 		add r9,#1
 		add r8,#1
-		cmp r8,#6
+		cmp r8,#4
 	bne outerloop
 	mov r10,#0
 	add r9,#1
