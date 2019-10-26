@@ -33,17 +33,64 @@ inputPromtLen = .- inputPromt
 
 _start:
 
-bl DisplayWelcomeMessage
+mov r4,#1
+mov r5,#3
 
+push {r7}
+bl DisplayWelcomeMessage
+pop {r7}
+
+mov r0,r4
+mov r1,r5
 push {r4-r11}
-mov r0,#1
-mov r1,#3
+bl DrawScreen
+pop {r4-r11}
+
+push {r3,r7}
+bl GetInput
+pop {r3,r7}
+mov r3,r0
+
+mov r0,r4
+mov r1,r3
+push {r3,r4}
+bl UpdatePlayer
+pop {r3,r4}
+mov r4,r0
+
+mov r0,r4
+mov r1,r3
+push {r4-r11}
 bl DrawScreen
 pop {r4-r11}
 
 
-bl GetInput
+//bl UpdateBall
+
 bl Exit
+
+UpdatePlayer:
+	mov r3,r0	//player position
+	mov r4,r1	//user input
+	
+	cmp r4,#1
+	beq moveUp
+	bhi moveDown
+	blo exitUpdatePlayer	
+
+	moveUp:
+		cmp r3,#0
+		subne r3,#1
+	b exitUpdatePlayer
+
+	moveDown:
+		cmp r3,#3
+		addne r3,#1
+
+	exitUpdatePlayer:
+		mov r0,r3
+bx lr
+
 
 DrawScreen:
 	mov r4,r0	//player y	
@@ -115,7 +162,14 @@ GetInput:
 	mov r2, #BUFFERSIZE
 	mov r7, #READ
 	swi 0
-	ldrb r0, [r1]
+	ldrb r3, [r1]
+	
+	mov r0,#0
+	cmp r3,#UP_CHAR
+	addeq r0,#1
+	
+	cmp r3,#DWN_CHAR
+	addeq r0,#2
 bx lr
 
 Exit:
