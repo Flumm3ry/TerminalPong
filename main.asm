@@ -6,7 +6,7 @@
 .equ READ,	3
 .equ WRITE,	4
 .equ BUFFERSIZE,2
-.equ SCREENBUFFERSIZE,29
+.equ SCREENBUFFERSIZE,30
 .equ UP_CHAR,	119
 .equ DWN_CHAR,	115
 .equ WHITE_SPACE,32
@@ -36,7 +36,7 @@ _start:
 bl DisplayWelcomeMessage
 
 push {r4-r11}
-mov r0,#2
+mov r0,#1
 mov r1,#3
 bl DrawScreen
 pop {r4-r11}
