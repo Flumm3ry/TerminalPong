@@ -35,9 +35,9 @@ _start:
 
 mov r4,#1	//player starting position
 
-mov r5,#1	//ball starting x
+mov r5,#2	//ball starting x
 lsl r5,#8
-orr r5,#3	//ball starting y
+orr r5,#1	//ball starting y
 
 push {r7}
 bl DisplayWelcomeMessage
@@ -96,10 +96,9 @@ bx lr
 
 DrawScreen:
 	mov r4,r0	//player y	
-	and r5,r1,#255	//ball x
-	lsr r1,#8
 	and r6,r1,#255	//ball y
-	check:
+	lsr r1,#8
+	and r5,r1,#255	//ball x
 
 	mov r8,#0		//current row
 	mov r9,#0		//current position in screen buffer
