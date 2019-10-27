@@ -80,11 +80,3 @@ _start:
     bne GameLoop        //only loop if the user hasnt lost yet
 
 b Exit
-
-include "DisplayWelcomeMessage.asm"
-include "DrawScreen.asm"
-include "GetInput.asm"
-include "UpdatePlayer.asm"
-include "UpdateBall.asm"
-inlcude "CheckLose.asm"
-include "Exit.asm"
