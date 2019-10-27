@@ -1,18 +1,8 @@
 /* Pong in assembly terminal */
 
 /* constantes */
-.equ STD,	1
-.equ EXIT,	1
-.equ READ,	3
-.equ WRITE,	4
 .equ BUFFERSIZE,2
 .equ SCREENBUFFERSIZE,30    // 4x6 board. 1 byte for each cell and 1 for each new line character
-.equ UP_CHAR,	119         // 'w'
-.equ DWN_CHAR,	115         // 's'
-.equ WHITE_SPACE,42         // '*'
-.equ PLAYER,	108         // 'l'
-.equ BALL,	48              // '0'
-.equ NEW_LINE,	10          // '\n'
 
 /* Initialised data */
 .section .data
@@ -80,11 +70,3 @@ _start:
     bne GameLoop        //only loop if the user hasnt lost yet
 
 b Exit
-
-include "DisplayWelcomeMessage.asm"
-include "DrawScreen.asm"
-include "GetInput.asm"
-include "UpdatePlayer.asm"
-include "UpdateBall.asm"
-inlcude "CheckLose.asm"
-include "Exit.asm"

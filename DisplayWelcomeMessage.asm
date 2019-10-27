@@ -1,3 +1,7 @@
+/* constantes */
+.equ STD,	1
+.equ WRITE,	4
+
 DisplayWelcomeMessage:
 //no parameters
 //returns nothing

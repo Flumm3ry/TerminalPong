@@ -1,3 +1,8 @@
+/* constantes */
+.equ STD,	1
+.equ EXIT,	1
+.equ WRITE,	4
+
 Exit:
 //no parameters
 //returns nothing
@@ -9,5 +14,5 @@ Exit:
 	swi 0
 
 	mov r0, #0
-	mov r7, #1
+	mov r7, #EXIT
 	swi 0

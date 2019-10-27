@@ -1,3 +1,12 @@
+/* constantes */
+.equ STD,	1
+.equ WRITE,	4
+.equ SCREENBUFFERSIZE,30    // 4x6 board. 1 byte for each cell and 1 for each new line character
+.equ WHITE_SPACE,42         // '*'
+.equ PLAYER,	108         // 'l'
+.equ BALL,	48              // '0'
+.equ NEW_LINE,	10          // '\n'
+
 DrawScreen:
 //2 parameters: r0 - player y position, r1 - ball position information
 //no returns

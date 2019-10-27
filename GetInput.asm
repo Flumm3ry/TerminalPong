@@ -1,3 +1,11 @@
+/* constantes */
+.equ STD,	1
+.equ READ,	3
+.equ WRITE,	4
+.equ BUFFERSIZE,2
+.equ UP_CHAR,	119         // 'w'
+.equ DWN_CHAR,	115         // 's'
+
 GetInput:
 //no parameters
 //returns 0,1 or 2 indicating what the input recieved was
