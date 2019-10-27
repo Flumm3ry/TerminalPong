@@ -19,6 +19,9 @@
 welcomeMsg:
 	.ascii "Welcome to pong\n"
 welcomeLen = .- welcomeMsg
+clearScreen:
+	.ascii "\33[2J"
+clearScreenLen = .- clearScreen
 inputPromt:
 	.ascii "Enter a character to play:\n"
 inputPromtLen = .- inputPromt
@@ -70,6 +73,10 @@ _start:
         bl UpdateBall
         pop {r3-r5}
         mov r5,r0
+
+	push {r7}
+	bl ClearScreen
+	pop {r7}
 
         mov r0,r5
         push {r3}
@@ -132,13 +139,23 @@ DrawScreen:
 		add r8,#1                   //increment the rown number
 		cmp r8,#4
 	bne outerloop                   //loop until the row number is 4
-	mov r10,#0                      //ends the screen buffer with the null character
-	strb r10,[r11,r9]
 
     //write the screen buffer to the screen
 	mov r0,#STD
 	ldr r1,=screenBuffer
 	mov r2,#SCREENBUFFERSIZE
+	mov r7,#WRITE
+	swi 0
+bx lr
+
+
+ClearScreen:
+//no parameters
+//no returns
+//clears the terminal screen
+	mov r0,#STD
+	ldr r1,=clearScreen
+	ldr r2,=clearScreenLen
 	mov r7,#WRITE
 	swi 0
 bx lr
