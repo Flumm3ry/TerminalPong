@@ -1,11 +1,13 @@
 UpdateBall:
+// 2 params: r0 - register holding ball information, r1 - player y position
+//returns updated ball information
 	mov r3,r1	//player position
 
 	and r4,r0,#255	//ball y
 	lsr r0,#8
 	and r5,r0,#255	//ball x
 	lsr r0,#8
-	and r6,#3	//direction (bit 1 indicates moving left/right and 2 indicates up/down)
+	and r6,#3	    //direction (bit 1 indicates moving left/right and 2 indicates up/down)
 
 	//if the ball is in the top row, make sure it is moving down
 	cmp r4,#0

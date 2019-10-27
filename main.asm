@@ -6,13 +6,13 @@
 .equ READ,	3
 .equ WRITE,	4
 .equ BUFFERSIZE,2
-.equ SCREENBUFFERSIZE,30
-.equ UP_CHAR,	119
-.equ DWN_CHAR,	115
-.equ WHITE_SPACE,42
-.equ PLAYER,	108
-.equ BALL,	48
-.equ NEW_LINE,	10
+.equ SCREENBUFFERSIZE,30    // 4x6 board. 1 byte for each cell and 1 for each new line character
+.equ UP_CHAR,	119         // 'w'
+.equ DWN_CHAR,	115         // 's'
+.equ WHITE_SPACE,42         // '*'
+.equ PLAYER,	108         // 'l'
+.equ BALL,	48              // '0'
+.equ NEW_LINE,	10          // '\n'
 
 /* Initialised data */
 .section .data
@@ -28,7 +28,7 @@ gameOverLen = .- gameOverMsg
 
 /* Uniinitialised data */
 .section .bss
-.comm buffer, 		BUFFERSIZE
+.comm buffer, 		BUFFERSIZE          //buffer for holding user input
 .comm screenBuffer,	SCREENBUFFERSIZE
 
 .section .text
@@ -76,7 +76,8 @@ _start:
         bl CheckLose
         pop {r3}
         cmp r0,#1
-    bne GameLoop
+
+    bne GameLoop        //only loop if the user hasnt lost yet
 
 b Exit
 

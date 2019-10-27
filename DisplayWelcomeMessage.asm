@@ -1,4 +1,6 @@
 DisplayWelcomeMessage:
+//no parameters
+//returns nothing
 	mov r0, #STD
 	ldr r1, =welcomeMsg
 	ldr r2, =welcomeLen
