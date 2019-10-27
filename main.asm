@@ -1,8 +1,18 @@
 /* Pong in assembly terminal */
 
 /* constantes */
+.equ STD,	1
+.equ EXIT,	1
+.equ READ,	3
+.equ WRITE,	4
 .equ BUFFERSIZE,2
 .equ SCREENBUFFERSIZE,30    // 4x6 board. 1 byte for each cell and 1 for each new line character
+.equ UP_CHAR,	119
+.equ DWN_CHAR,	115
+.equ WHITE_SPACE,42
+.equ PLAYER,	124
+.equ BALL,	48
+.equ NEW_LINE,	10
 
 /* Initialised data */
 .section .data
@@ -70,10 +80,8 @@ _start:
     bne GameLoop        //only loop if the user hasnt lost yet
 
 b Exit
-<<<<<<< HEAD
-=======
 
-
+/* Functions */
 DisplayWelcomeMessage:
 //no parameters
 //returns nothing
@@ -272,4 +280,4 @@ Exit:
 	mov r0, #0
 	mov r7, #1
 	swi 0
->>>>>>> f62a77ad336a572a42f2c3bda65a8cea756f278a
+
