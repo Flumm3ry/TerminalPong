@@ -11,7 +11,7 @@
 .equ DWN_CHAR,	115
 .equ WHITE_SPACE,42
 .equ PLAYER,	108
-.equ BALL,	254
+.equ BALL,	48
 .equ NEW_LINE,	10
 
 /* Initialised data */
