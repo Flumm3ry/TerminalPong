@@ -69,9 +69,24 @@ bl UpdateBall
 pop {r3-r5}
 mov r5,r0
 
-b GameLoop
+mov r0,r5
+push {r3}
+bl CheckLose
+pop {r3}
+cmp r0,#1
+
+bne GameLoop
 
 b Exit
+
+CheckLose:
+	and r3,r0,#0xFF00
+	lsr r3,#8
+	
+	mov r0,#0
+	cmp r3,#0
+	addeq r0,#1
+bx lr
 
 UpdateBall:
 	mov r3,r1	//player position
@@ -125,8 +140,6 @@ UpdateBall:
 	lsl r0,#8
 	orr r0,r4
 bx lr
-
-CheckWin:
 
 
 UpdatePlayer:
@@ -200,6 +213,7 @@ DrawScreen:
 	swi 0
 bx lr
 
+
 DisplayWelcomeMessage:
 	mov r0, #STD
 	ldr r1, =welcomeMsg
@@ -207,6 +221,7 @@ DisplayWelcomeMessage:
 	mov r7, #WRITE
 	swi 0
 bx lr
+
 
 GetInput:
 	mov r0, #STD
