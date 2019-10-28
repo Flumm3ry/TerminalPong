@@ -295,6 +295,6 @@ Exit:
 	swi 0
 
 	mov r0, #0
-	mov r7, #1
+	mov r7, #EXIT
 	swi 0
 
