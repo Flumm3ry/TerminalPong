@@ -195,6 +195,7 @@ bx lr
 
 UpdatePlayer:
 //2 parameters: r0 - player y position, r1 - User input selection
+//returns the updated player position
 	mov r3,r0	//player position
 	mov r4,r1	//user input
 
